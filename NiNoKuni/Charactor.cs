@@ -46,6 +46,30 @@ namespace NiNoKuni
 			set { Util.WriteNumber(mAddress + 8, 2, value, 1, 9999); }
 		}
 
+		public uint PhyAtk
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 10, 2); }
+			set { Util.WriteNumber(mAddress + 10, 2, value, 1, 9999); }
+		}
+
+		public uint PhyDef
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 12, 2); }
+			set { Util.WriteNumber(mAddress + 12, 2, value, 1, 9999); }
+		}
+
+		public uint MagAtk
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 14, 2); }
+			set { Util.WriteNumber(mAddress + 14, 2, value, 1, 9999); }
+		}
+
+		public uint MagDef
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 16, 2); }
+			set { Util.WriteNumber(mAddress + 16, 2, value, 1, 9999); }
+		}
+
 		private readonly uint mAddress;
 	}
 }

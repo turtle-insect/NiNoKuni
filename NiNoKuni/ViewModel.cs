@@ -19,5 +19,11 @@ namespace NiNoKuni
 				Party.Add(new Charactor(0x17D59 + i * 0, names[i]));
 			}
 		}
+
+		public uint Money
+		{
+			get { return SaveData.Instance().ReadNumber(0x18BC1, 4); }
+			set { Util.WriteNumber(0x18BC1, 4, value, 0, 99999999); }
+		}
 	}
 }
