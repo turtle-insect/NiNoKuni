@@ -13,17 +13,14 @@ namespace NiNoKuni
 
 		public ViewModel()
 		{
-			String[] names = { "オリバー" };
-			for (uint i = 0; i < names.Length; i++)
+			for (uint i = 0; i < 10; i++)
 			{
-				Party.Add(new Charactor(0x17D59 + i * 0, names[i]));
-			}
-		}
+				uint address = 0x17D35 + i * 850;
+				String name = SaveData.Instance().ReadText(address, 3);
+				if (String.IsNullOrEmpty(name)) break;
 
-		public uint Money
-		{
-			get { return SaveData.Instance().ReadNumber(0x18BC1, 4); }
-			set { Util.WriteNumber(0x18BC1, 4, value, 0, 99999999); }
+				Party.Add(new Charactor(address));
+			}
 		}
 	}
 }

@@ -26,6 +26,12 @@ namespace NiNoKuni
 			InitializeComponent();
 		}
 
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			HexEditor.Stream?.Close();
+			HexEditor.Stream?.Dispose();
+		}
+
 		private void Window_PreviewDragOver(object sender, DragEventArgs e)
 		{
 			e.Handled = e.Data.GetDataPresent(DataFormats.FileDrop);
@@ -67,6 +73,9 @@ namespace NiNoKuni
 			}
 
 			DataContext = new ViewModel();
+			HexEditor.Stream?.Close();
+			HexEditor.Stream?.Dispose();
+			HexEditor.Stream = new System.IO.MemoryStream(SaveData.Instance().Buffer);
 			MessageBox.Show("success");
 		}
 
@@ -106,7 +115,13 @@ namespace NiNoKuni
 
 		private void MenuItemAbout_Click(object sender, RoutedEventArgs e)
 		{
-			//new AboutWindow().ShowDialog();
+			new AboutWindow().ShowDialog();
+		}
+
+		private void HexEditor_BytesModified(object sender, EventArgs e)
+		{
+			SaveData.Instance().Buffer = HexEditor.GetAllBytes();
+			DataContext = new ViewModel();
 		}
 	}
 }

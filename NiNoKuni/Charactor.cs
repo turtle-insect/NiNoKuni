@@ -8,66 +8,81 @@ namespace NiNoKuni
 {
 	class Charactor
 	{
-		public Charactor(uint address, String name)
+		public Charactor(uint address)
 		{
 			mAddress = address;
-			Name = name;
 		}
 
 		public uint Lv
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress, 1); }
-			set { Util.WriteNumber(mAddress, 1, value, 1, 99); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 36, 1); }
+			set { Util.WriteNumber(mAddress + 36, 1, value, 1, 99); }
 		}
 
-		public String Name { get; set; }
+		public String Name
+		{
+			get { return SaveData.Instance().ReadText(mAddress, 18); }
+			set { SaveData.Instance().WriteText(mAddress, 18, value); }
+		}
 
 		public uint NowHP
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 2, 2); }
-			set { Util.WriteNumber(mAddress + 2, 2, value, 0, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 38, 2); }
+			set { Util.WriteNumber(mAddress + 38, 2, value, 0, 9999); }
 		}
 
 		public uint MaxHP
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 4, 2); }
-			set { Util.WriteNumber(mAddress + 4, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 40, 2); }
+			set { Util.WriteNumber(mAddress + 40, 2, value, 1, 9999); }
 		}
 
 		public uint NowMP
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 6, 2); }
-			set { Util.WriteNumber(mAddress + 6, 2, value, 0, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 42, 2); }
+			set { Util.WriteNumber(mAddress + 42, 2, value, 0, 9999); }
 		}
 
 		public uint MaxMP
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 8, 2); }
-			set { Util.WriteNumber(mAddress + 8, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 44, 2); }
+			set { Util.WriteNumber(mAddress + 44, 2, value, 1, 9999); }
 		}
 
 		public uint PhyAtk
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 10, 2); }
-			set { Util.WriteNumber(mAddress + 10, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 46, 2); }
+			set { Util.WriteNumber(mAddress + 46, 2, value, 1, 9999); }
 		}
 
 		public uint PhyDef
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 12, 2); }
-			set { Util.WriteNumber(mAddress + 12, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 48, 2); }
+			set { Util.WriteNumber(mAddress + 48, 2, value, 1, 9999); }
 		}
 
-		public uint MagAtk
+		public uint Trick
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 14, 2); }
-			set { Util.WriteNumber(mAddress + 14, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 50, 2); }
+			set { Util.WriteNumber(mAddress + 50, 2, value, 1, 9999); }
 		}
 
-		public uint MagDef
+		public uint Tough
 		{
-			get { return SaveData.Instance().ReadNumber(mAddress + 16, 2); }
-			set { Util.WriteNumber(mAddress + 16, 2, value, 1, 9999); }
+			get { return SaveData.Instance().ReadNumber(mAddress + 52, 2); }
+			set { Util.WriteNumber(mAddress + 52, 2, value, 1, 9999); }
+		}
+
+		public uint Speed
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 54, 2); }
+			set { Util.WriteNumber(mAddress + 54, 2, value, 1, 9999); }
+		}
+
+		public uint Skill
+		{
+			get { return SaveData.Instance().ReadNumber(mAddress + 56, 2); }
+			set { Util.WriteNumber(mAddress + 56, 2, value, 1, 9999); }
 		}
 
 		private readonly uint mAddress;

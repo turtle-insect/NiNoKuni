@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:control="clr-namespace:WpfHexaEditor;assembly=WPFHexaEditor"
         xmlns:local="clr-namespace:NiNoKuni"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         AllowDrop="True" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver"
-        Title="Ni No Kuni SaveEditor(Nintendo Switch)" Height="500" Width="700">
+        Title="Ni No Kuni SaveEditor(Nintendo Switch)" Height="500" Width="700" Closed="Window_Closed">
     <Window.DataContext>
         <local:ViewModel/>
     </Window.DataContext>
@@ -36,22 +37,6 @@
                 </Button>
             </ToolBar>
             <TabControl>
-                <TabItem Header="Basic">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="5"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="14*"/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Money"/>
-                        <TextBox Grid.Column="1" Text="{Binding Money, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </TabItem>
                 <TabItem Header="Charactor">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -76,7 +61,9 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition Height="5*"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
                             <Label Content="Lv"/>
                             <TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Lv, UpdateSourceTrigger=PropertyChanged}"/>
@@ -94,12 +81,19 @@
                             <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.PhyAtk, UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Grid.Row="7" Content="PhyDef"/>
                             <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.PhyDef, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Label Grid.Row="8" Content="MagAtk"/>
-                            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MagAtk, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Label Grid.Row="9" Content="MagDef"/>
-                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MagDef, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Row="8" Content="Trick"/>
+                            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Trick, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Row="9" Content="Tough"/>
+                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Tough, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Row="10" Content="Speed"/>
+                            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Speed, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Row="11" Content="Skill"/>
+                            <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Skill, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </Grid>
+                </TabItem>
+                <TabItem Header="HexEditor">
+                    <control:HexEditor Name="HexEditor" BytesModified="HexEditor_BytesModified"/>
                 </TabItem>
             </TabControl>
         </DockPanel>

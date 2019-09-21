@@ -11,7 +11,7 @@ namespace NiNoKuni
 		private static SaveData mThis;
 		private String mFileName = null;
 		private Byte[] mHeader = null;
-		private Byte[] mBuffer = null;
+		private Byte[] mBuffer;
 		private readonly System.Text.Encoding mEncode = System.Text.Encoding.UTF8;
 		public uint Adventure { private get; set; } = 0;
 
@@ -22,6 +22,12 @@ namespace NiNoKuni
 		{
 			if (mThis == null) mThis = new SaveData();
 			return mThis;
+		}
+
+		public Byte[] Buffer
+		{
+			get { return mBuffer; }
+			set { mBuffer = value; }
 		}
 
 		public bool Open(String filename, bool force)
