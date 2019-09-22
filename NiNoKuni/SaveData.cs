@@ -46,7 +46,7 @@ namespace NiNoKuni
 
 			int length = 6 + tmp[4] + tmp[tmp[4] + 5];
 			// Length check ?
-			length += tmp[tmp[4] + 6] == 0xE3 ? 0 : tmp[tmp[4] + 6];
+			length += tmp[length] == 0x78 ? 0 : 1;
 			mHeader = new byte[length];
 			Byte[] comp = new Byte[tmp.Length - mHeader.Length];
 			Array.Copy(tmp, mHeader.Length, comp, 0, comp.Length);
